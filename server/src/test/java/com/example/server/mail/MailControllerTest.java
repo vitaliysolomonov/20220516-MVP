@@ -1,4 +1,4 @@
-package com.example.server;
+package com.example.server.mail;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,8 +12,6 @@ import static org.hamcrest.Matchers.is;
 import javax.transaction.Transactional;
 
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
 
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -24,7 +22,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 public class MailControllerTest {
     @Autowired
     MockMvc mvc;
-    @Autowired MailRepository repository;
+    @Autowired
+    MailRepository repository;
 
     Mail mail1;
     Mail mail2;
