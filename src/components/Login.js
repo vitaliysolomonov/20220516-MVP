@@ -1,5 +1,7 @@
 import {useState} from "react";
 import axios from "axios";
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 const Login = ({setUser}) => {
 
@@ -24,7 +26,20 @@ const Login = ({setUser}) => {
     }
 
     return (
-        <>
+        <Box
+            sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                '& > :not(style)': {
+                    m: 1,
+                    mb:0,
+                    p:2,
+                    pb: 4,
+                    width: "100%"
+                },
+            }}
+        >
+            <Paper elevation={3} >
             <div className="login-wrapper">
                 <h3>Please Log In</h3>
                 <form onSubmit={(e) => submitPassword(e)}>
@@ -60,7 +75,8 @@ const Login = ({setUser}) => {
                 <p className={"wrongPass"}>Wrong username or password</p>
                 :
                 <></>}
-        </>
+        </Paper>
+        </Box>
     )
 }
 export default Login;

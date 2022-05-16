@@ -40,22 +40,9 @@ const NewEntry = ({allEntries, getAllEntries}) => {
 
     return (
 
-        <Box
-            sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                '& > :not(style)': {
-                    mt: 2,
-                    mb: 0,
-                    p: 3,
-                    pt:0,
-                    width: "30em"
-                },
-            }}
-            alignSelf={"center"}
-        >
 
-            <Paper  elevation={2} className={"newEntry"}>
+
+
                 <div className={"newEntry"}>
                 <h4>Add new mail entry</h4>
                 <form onSubmit={(e) => saveNewEntry(e)}>
@@ -93,8 +80,7 @@ const NewEntry = ({allEntries, getAllEntries}) => {
                         onClick={(e) => saveNewEntry(e)}/>
                 </form>
                 </div>
-            </Paper>
-        </Box>
+
     )
 }
 export default NewEntry;

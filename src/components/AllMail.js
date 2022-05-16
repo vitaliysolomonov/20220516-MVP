@@ -22,7 +22,7 @@ const AllMail = ({allEntries, getAllEntries}) => {
         //     </thead>
         //     <tbody>
 
-        <TableContainer component={Paper} sx={{ mx: "auto"}}>
+        <TableContainer >
             <Table sx={{minWidth: 450, maxWidth:800, mx: "auto"}} size="small" aria-label="a dense table">
                 <TableHead>
                     <TableRow>

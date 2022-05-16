@@ -64,15 +64,18 @@ function App() {
         || user.access === "B Co"
         || user.access === "C Co") {
         return (
-            <BrowserRouter>
-                <Routes>
-                    <Route path={"/*"}
-                           element={<Navigate replace to={"/group"}/>}/>
-                    <Route
-                        path={"/group"}
-                        element={<GroupPage user={user} setUser={setUser}/>}/>
-                </Routes>
-            </BrowserRouter>
+            <div className="App">
+                <TopBar user={user} setUser={setUser}/>
+                <BrowserRouter>
+                    <Routes>
+                        <Route path={"/*"}
+                               element={<Navigate replace to={"/group"}/>}/>
+                        <Route
+                            path={"/group"}
+                            element={<GroupPage user={user} setUser={setUser}/>}/>
+                    </Routes>
+                </BrowserRouter>
+            </div>
         );
 
     } else
