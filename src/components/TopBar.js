@@ -56,16 +56,16 @@ const TopBar = ({user, setUser}) => {
                 <Toolbar>
                     <Box sx={{flexGrow: 1}}>
                         <Grid container spacing={0}>
-                            <Grid item xs={0} sm={2} textAlign={"left"} paddingLeft={"2em"}>
+                            <Grid component={Box} item xs={0} sm={2} display={{ xs: "none", sm: "block" }} textAlign={"left"} paddingLeft={"2em"}>
                                 <img src={"/favicon.ico"} alt="Logo" width="35" height="35"/>
                             </Grid>
-                            <Grid item xs={8} sm={8}>
+                            <Grid item xs={6} sm={8}>
                                 <Typography fontSize="1.5em" textAlign={"center"} className="title" variant="h6"
                                             component="div" sx={{flexGrow: 1}}>
                                     Battalion S1 Mail Room
                                 </Typography>
                             </Grid>
-                            <Grid item xs={4} sm={2}>
+                            <Grid item xs={6} sm={2}>
                                 {
                                     user.name ?
                                         <Stack direction="row" justifyContent="end" paddingRight={"1em"}>

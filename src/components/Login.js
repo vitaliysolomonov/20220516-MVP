@@ -29,31 +29,30 @@ const Login = ({setUser}) => {
                 <h3>Please Log In</h3>
                 <form onSubmit={(e) => submitPassword(e)}>
                     <label htmlFor={"userName"}>
-                        Username:
-                        <br/>
-                        <input
+                        <input className={"log"}
+                            placeholder={"Username..."}
                             htmlFor={"userName"}
                             type="text"
                             value={userName}
                             onChange={(e) => setUserName(e.target.value)}/>
-                    </label><br/><br/>
+                    </label>
+                    <br/>
                     <label htmlFor={"password"}>
-                        Password:
-                        <br/>
-                        <input
+                        <input className={"log"}
+                            placeholder={"Password..."}
                             htmlFor={"password"}
                             type="password"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}/>
                     </label>
-                    <br/>
+
+                    <div align={"right"}>
                     <button
+                        className={"login"}
                         type="submit"
                         onClick={(e) => submitPassword(e)}
-                    >
-                        Login
-                    </button>
-
+                    > Login </button>
+                    </div>
 
                 </form>
             </div>

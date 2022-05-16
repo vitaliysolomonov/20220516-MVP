@@ -1,6 +1,8 @@
 import {useState} from "react";
 import axios from "axios";
 import React from 'react';
+import Box from '@mui/material/Box';
+import Paper from '@mui/material/Paper';
 
 const NewEntry = ({allEntries, getAllEntries}) => {
 
@@ -11,7 +13,7 @@ const NewEntry = ({allEntries, getAllEntries}) => {
 
     const saveNewEntry = (e) => {
         e.preventDefault();
-        if(!name) return;
+        if (!name) return;
         let alreadyPatched = false;
         //look through all mail if this person already has some mail
         for (let i = 0; i < allEntries.length; i++) {
@@ -37,43 +39,62 @@ const NewEntry = ({allEntries, getAllEntries}) => {
 
 
     return (
-        <div className={"newEntry"}>
-            <h4>Add new mail entry</h4>
-            <form onSubmit={(e) => saveNewEntry(e)}>
-                <label htmlFor="unit">Select unit: </label>
-                <select name="unit"
-                        value={unit}
-                        onChange={(e) => setUnit(e.target.value)}>
-                    <option value="HHC">HHC</option>
-                    <option value="A Co">A Co</option>
-                    <option value="B Co">B Co</option>
-                    <option value="C Co">C Co</option>
-                </select>
-                <br/><br/>
 
-                <label htmlFor={"name"}>Soldier's name: </label>
-                <input
-                    type={"text"}
-                    name={"name"}
-                    value={name}
-                    onChange={(e) => setName(e.target.value)}/>
-                <br/><br/>
+        <Box
+            sx={{
+                display: 'flex',
+                flexWrap: 'wrap',
+                '& > :not(style)': {
+                    mt: 2,
+                    mb: 0,
+                    p: 3,
+                    pt:0,
+                    width: "30em"
+                },
+            }}
+            alignSelf={"center"}
+        >
 
-                <label htmlFor={"mailQuantity"}>Quantity of mail pieces received: </label>
-                <input
-                    className={"quantity"}
-                    type="number"
-                    name={"mailQuantity"}
-                    min="1" max="100"
-                    value={mailQuantity}
-                    onChange={(e) => setMailQuantity(Number(e.target.value))}/>&nbsp;&nbsp;
+            <Paper  elevation={2} className={"newEntry"}>
+                <div className={"newEntry"}>
+                <h4>Add new mail entry</h4>
+                <form onSubmit={(e) => saveNewEntry(e)}>
+                    <label htmlFor="unit">Select unit: </label>
+                    <select name="unit"
+                            value={unit}
+                            onChange={(e) => setUnit(e.target.value)}>
+                        <option value="HHC">HHC</option>
+                        <option value="A Co">A Co</option>
+                        <option value="B Co">B Co</option>
+                        <option value="C Co">C Co</option>
+                    </select>
+                    <br/><br/>
 
-                <input
-                    type="submit"
-                    value="Submit"
-                    onClick={(e) => saveNewEntry(e)}/>
-            </form>
-        </div>
+                    <label htmlFor={"name"}>Soldier's name: </label>
+                    <input
+                        type={"text"}
+                        name={"name"}
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}/>
+                    <br/><br/>
+
+                    <label htmlFor={"mailQuantity"}>Quantity of mail pieces received: </label>
+                    <input
+                        className={"quantity"}
+                        type="number"
+                        name={"mailQuantity"}
+                        min="1" max="100"
+                        value={mailQuantity}
+                        onChange={(e) => setMailQuantity(Number(e.target.value))}/>&nbsp;&nbsp;
+
+                    <input
+                        type="submit"
+                        value="Submit"
+                        onClick={(e) => saveNewEntry(e)}/>
+                </form>
+                </div>
+            </Paper>
+        </Box>
     )
 }
 export default NewEntry;
