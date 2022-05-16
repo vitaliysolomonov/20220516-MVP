@@ -9,4 +9,6 @@ public interface MailRepository extends CrudRepository<Mail,Long> {
     Iterable<Mail>  findAllSorted();
 
     Mail findByNameAndUnit(String name, String unit);
+
+    Iterable<Mail> findAllByUnit(String access);
 }

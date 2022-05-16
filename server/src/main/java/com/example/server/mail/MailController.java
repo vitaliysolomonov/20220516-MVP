@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -40,9 +41,25 @@ public class MailController {
 
     //3. Patch a mail entry
     @PatchMapping("/{id}")
-    public Mail updateOneMailEntry(@PathVariable Long id, @RequestBody HashMap<String, Integer> newMailCount) {
+    public Mail updateOneMailEntry(@PathVariable Long id, @RequestBody HashMap<String, Object> newMailInfo) {
         Mail entryToUpdate = repository.findById(id).get();
-        if (newMailCount.get("mailCount") > 0) entryToUpdate.setMailCount(newMailCount.get("mailCount"));
+        newMailInfo.forEach((k,v)->{
+            switch(k){
+                case "name":
+                    entryToUpdate.setName((String)v);
+                    break;
+                case "unit":
+                    entryToUpdate.setUnit((String)v);
+                    break;
+                case "mailCount":
+                    if((Integer)v>0) entryToUpdate.setMailCount((Integer)v);
+                    break;
+                case "date":
+                    entryToUpdate.setDate(LocalDate.parse((String)v));
+                    break;
+                default:break;
+            }
+        });
         return repository.save(entryToUpdate);
     }
 
@@ -66,16 +83,9 @@ public class MailController {
         return new ResponseEntity<>("Mail not found", HttpStatus.NOT_FOUND);
     }
 
-//    //5. Authentication
-//    @PostMapping("/login")
-//    public Map<String, String> provideToken(@RequestBody HashMap<String, String> pass) {
-//        HashMap<String, String> response = new HashMap<>();
-//        if (pass.get("userName").equals("clerk") && pass.get("password").equals("123"))
-//            response.put("token", "admin");
-//        else if (pass.get("userName").equals("hhc") && pass.get("password").equals("123"))
-//            response.put("token", "hhc");
-//        else if (pass.get("userName").equals("user") && pass.get("password").equals("123"))
-//            response.put("token", "user");
-//        return response;
-//    }
+    //6. Find group mail
+    @GetMapping("/{unit}")
+    public Iterable<Mail> getGroupMail(@PathVariable String unit){
+        return repository.findAllByUnit(unit);
+    }
 }
